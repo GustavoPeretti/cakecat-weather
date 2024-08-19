@@ -1,0 +1,2 @@
+FLASK_APP=cakecat_weather.py
+FLASK_ENV=development
