@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Cinzel:wght@400..900&family=Ruda:wght@400..900&display=swap');
+
+nav {
+    position: fixed;
+    z-index: 50;
+    padding: 1em;
+}
+
+nav > .material-symbols-outlined {
+    color: white;
+    font-size: 2em;
+}
+
+.stack {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#header-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#header-video-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Película preta com opacidade */
+    z-index: 2;
+}
+
+.stack > div:last-child {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #ffffff;
+}
+
+
+.stack > #header-titulo > h3 {
+    font-family: 'Cinzel';
+    font-size: 2em;
+    margin-top: 0;
+}
+
+.stack > #header-titulo >img {
+    width: auto;
+    height: 15em;
+}
+
+#pesquisa-cidade{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#pesquisa-cidade > h2{
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 2.5em;
+}
+
+#pesquisa-cidade > form > input{
+    font-family: 'Ruda', sans-serif;
+    font-size: 1em;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    box-sizing: border-box; 
+    border-radius: 0.5em;
+    border-width: 2px;
+    border-style: solid; 
+    border-color: #000000;
+    color: black;
+    margin-top: 1em;
+}
+
+#pesquisa-cidade > form {
+    width: 30em;
+}
+
+.mapa {
+    border-radius: 0.5em;
+    border-width: 2px;
+    border-style: solid; 
+    border-color: #000000;
+    margin-top: 2em;
+    width: 20em;
+    height: auto;
+}
+
+#quadro {
+    margin-left: 7em;
+    margin-right: 7em;
+}
+
+#corpo > div {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+#cabeçalho {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+#datas {
+    display: flex;
+    flex-direction: row;
+}
+
+#datas > * {
+    background-color: #fcbe85;
+    border-radius: 10px 10px 0 0;
+    width: 5em;
+    height: 3em;
+    font-family: 'Ruda', sans-serif;
+    text-align: center;
+}
+
+#calendario {
+    background-color: #fcbe85;
+    border-radius: 10px 10px 0 0;
+    width: 5em;
+    height: 3em;
+    font-family: 'Ruda', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#corpo {
+    background-color: #ff79a2;
+    width: 100%;
+    height: 25em;
+}
+
+#corpo > div > h2 {
+    font-family: 'Bree Serif', sans-serif;
+    color: white;
+    font-size: 2.5em;
+}
+
+#corpo > div > div  {
+    display: flex;
+    align-items: center;
+}
+
+#condição {
+    margin-left: 1em;
+    font-size: 1.8em;
+    color: #ffffff;
+    font-family: 'Ruda', sans-serif;
+    font-weight: bold;
+}
+
+#circulo {
+    background-color: white;
+    height: 4em;
+    width: 4em;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

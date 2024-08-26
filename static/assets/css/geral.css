@@ -1,0 +1,17 @@
+.seção {
+    margin-top: 3em;
+    margin-left: 10em;
+    margin-right: 10em;
+}
+
+h2 {
+    font-size: 3em;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
