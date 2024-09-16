@@ -6,7 +6,7 @@ tempo = Blueprint('tempo', __name__)
 def buscar_todos_tempos():
     pass
 
-@tempo.route('/<data>', methods=['GET'])
+@tempo.route('/<int:data>', methods=['GET'])
 def buscar_tempo():
     pass
 

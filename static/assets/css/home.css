@@ -6,7 +6,7 @@ nav {
     padding: 1em;
 }
 
-nav > .material-symbols-outlined {
+nav .material-symbols-outlined {
     color: white;
     font-size: 2em;
 }
@@ -59,11 +59,13 @@ nav > .material-symbols-outlined {
     font-family: 'Cinzel';
     font-size: 2em;
     margin-top: 0;
+    text-shadow: 2px 2px 4px black;
 }
 
-.stack > #header-titulo >img {
+.stack > #header-titulo > img {
     width: auto;
     height: 15em;
+    filter: drop-shadow(2px 2px 4px black);
 }
 
 #pesquisa-cidade{
