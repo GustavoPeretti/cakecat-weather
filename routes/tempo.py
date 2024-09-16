@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, request
+from database.tempo import Tempo
 
 tempo = Blueprint('tempo', __name__)
 
@@ -12,7 +13,9 @@ def buscar_tempo():
 
 @tempo.route('/', methods=['POST'])
 def cadastrar_tempo():
-    pass
+    dados = request.json
+
+    
 
 @tempo.route('/', methods=['PUT'])
 def atualizar_tempo():
