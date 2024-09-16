@@ -68,6 +68,12 @@ nav .material-symbols-outlined {
     filter: drop-shadow(2px 2px 4px black);
 }
 
+.seção {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #pesquisa-cidade{
     display: flex;
     align-items: center;
@@ -109,13 +115,7 @@ nav .material-symbols-outlined {
 }
 
 #quadro {
-    margin-left: 7em;
-    margin-right: 7em;
-}
-
-#corpo > div {
-    margin-left: 5em;
-    margin-right: 5em;
+    width: 80%;
 }
 
 #cabeçalho {
@@ -156,17 +156,30 @@ nav .material-symbols-outlined {
     background-color: #ff79a2;
     width: 100%;
     height: 25em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 #corpo > div > h2 {
     font-family: 'Bree Serif', sans-serif;
     color: white;
     font-size: 2.5em;
+    margin: 0;
 }
 
 #corpo > div > div  {
     display: flex;
     align-items: center;
+}
+
+#informações-cidade {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 65%;
+    margin-left: 4em;
 }
 
 #condição {
@@ -185,4 +198,109 @@ nav .material-symbols-outlined {
     justify-content: center;
     align-items: center;
     display: flex;
+}
+
+#minima, #maxima {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+#maxima > span {
+    color: red;
+    font-size: 1.8em;
+}
+
+#minima > span {
+    color: rgb(44, 94, 255);
+    transform: rotate(180deg);
+    font-size: 1.8em;
+}
+
+#temperaturas {
+    color: white;
+    font-family: 'Ruda', sans-serif;
+    font-size: 1.8em;
+}
+
+#grade {
+    display: flex;
+    height: 75%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 50%;
+}
+
+.linha {
+    display: flex;
+    gap: 1.5em;
+}
+
+.quadrado > * {
+    margin: 0;
+}
+
+.quadrado {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 7em;
+    height: 7em;
+    font-family: 'Ruda', sans-serif;
+}
+
+.quadrado > img {
+    width: 2.5em;
+}
+
+.destaque {
+    font-size: 1.4em;
+}
+
+.descrição {
+    font-size: 0.8em;
+}
+
+#vento {
+    width: 2.5em;
+    height: 2.4em;
+}
+
+#umidade {
+    width: 1.5em;
+    height: 2em;
+}
+
+#sem-possibilidade {
+    font-size: 1em;
+    text-align: center;
+}
+
+#img-respiro {
+    width: 50%;
+}
+
+.seção > h2 {
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 2.5em;
+}
+
+#acordeão > details >summary {
+    background-color: #ffa9aa;
+}
+
+
+#acordeão > details > summary{
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 1.5em;
+}
+
+#acordeão > details > p{
+    font-family: 'Ruda', sans-serif;
+}
+
+details summary {
+    list-style: none; /* Remove a flecha */
 }
