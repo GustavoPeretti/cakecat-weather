@@ -1,1 +1,241 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Ruda:wght@400..900&display=swap');
+
+
+.seção {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pesquisa-cidade{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#pesquisa-cidade > h2{
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 2.5em;
+}
+
+#pesquisa-cidade > form > input{
+    font-family: 'Ruda', sans-serif;
+    font-size: 1em;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    box-sizing: border-box; 
+    border-radius: 0.5em;
+    border-width: 2px;
+    border-style: solid; 
+    border-color: #000000;
+    color: black;
+    margin-top: 1em;
+}
+
+#pesquisa-cidade > form {
+    width: 30em;
+}
+
+#quadro {
+    width: 80%;
+    margin-bottom: 5em;
+}
+
+#cabeçalho {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+#datas {
+    display: flex;
+    flex-direction: row;
+}
+
+#datas > * {
+    background-color: #fcbe85;
+    border-radius: 10px 10px 0 0;
+    width: 5em;
+    height: 3em;
+    font-family: 'Ruda', sans-serif;
+    text-align: center;
+}
+
+#calendario {
+    background-color: #fcbe85;
+    border-radius: 10px 10px 0 0;
+    width: 5em;
+    height: 3em;
+    font-family: 'Ruda', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#corpo {
+    background-color: #ff79a2;
+    width: 100%;
+    height: 25em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#corpo > div > h2 {
+    font-family: 'Bree Serif', sans-serif;
+    color: white;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+#corpo > div > div  {
+    display: flex;
+    align-items: center;
+}
+
+#informações-cidade {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 65%;
+    margin-left: 4em;
+}
+
+#condição {
+    margin-left: 1em;
+    font-size: 1.8em;
+    color: #ffffff;
+    font-family: 'Ruda', sans-serif;
+    font-weight: bold;
+}
+
+#circulo {
+    background-color: white;
+    height: 4em;
+    width: 4em;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#minima, #maxima {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+#maxima > span {
+    color: red;
+    font-size: 1.8em;
+}
+
+#minima > span {
+    color: rgb(44, 94, 255);
+    transform: rotate(180deg);
+    font-size: 1.8em;
+}
+
+#temperaturas {
+    color: white;
+    font-family: 'Ruda', sans-serif;
+    font-size: 1.8em;
+}
+
+#grade {
+    display: flex;
+    height: 75%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 50%;
+}
+
+.linha {
+    display: flex;
+    gap: 1.5em;
+}
+
+.quadrado > * {
+    margin: 0;
+}
+
+.quadrado {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 7em;
+    height: 7em;
+    font-family: 'Ruda', sans-serif;
+}
+
+.quadrado > img {
+    width: 2.5em;
+}
+
+.destaque {
+    font-size: 1.4em;
+}
+
+.descrição {
+    font-size: 0.8em;
+}
+
+#vento {
+    width: 2.5em;
+    height: 2.4em;
+}
+
+#umidade {
+    width: 1.5em;
+    height: 2em;
+}
+
+#sem-possibilidade {
+    font-size: 1em;
+    text-align: center;
+}
+
+input {
+    border-radius: 10px;
+    padding: 1em 0.5em 1em 0.5em;
+    border: none
+}
+
+#input-temperaturas {
+    width: 3em;
+}
+
+#inputs-quadrado {
+    width: 3em;
+    border: solid rgba(0, 0, 0, 0.173) 1px;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+#condição-climatica {
+    margin-left: 1em;
+}
+
+button {
+    padding: 1em;
+    width: 15em;
+    background-color: #97e6ff;
+    border-radius: 5px;
+    border: none;
+    position: relative; 
+    z-index: 1;
+    align-items: center;
+    margin-bottom: 5em;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Ruda', sans-serif;
+}

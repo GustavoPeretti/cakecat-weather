@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .seção {
     margin-top: 3em;
     margin-left: 10em;

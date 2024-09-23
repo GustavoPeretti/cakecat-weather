@@ -104,16 +104,6 @@ nav .material-symbols-outlined {
     width: 30em;
 }
 
-.mapa {
-    border-radius: 0.5em;
-    border-width: 2px;
-    border-style: solid; 
-    border-color: #000000;
-    margin-top: 2em;
-    width: 20em;
-    height: auto;
-}
-
 #quadro {
     width: 80%;
 }
@@ -287,20 +277,70 @@ nav .material-symbols-outlined {
     font-size: 2.5em;
 }
 
-#acordeão > details >summary {
+#tempo {
     background-color: #ffa9aa;
 }
 
-
-#acordeão > details > summary{
-    font-family: 'Bree Serif', sans-serif;
-    font-size: 1.5em;
+#clima {
+    background-color: #ffd7b2;
 }
 
-#acordeão > details > p{
-    font-family: 'Ruda', sans-serif;
+#calor {
+    background-color: #c6e0f7;
+}
+
+#temperatura {
+    background-color: #e4b8ff;
+}
+
+#details-temperatura {
+    border-bottom: #00000060 solid 1px;
+}
+
+details {
+    border-left: #00000060 solid 1px;
+    border-right: #00000060 solid 1px;
+    transition: max-height 1s ease; /* Transição suave para abrir/fechar */
+    max-height: 4em; /* Altura inicial, suficiente para o summary */
+    overflow: hidden; /* Oculta o conteúdo adicional */
+}
+    
+details[open] {
+    max-height: 1000px; /* Altura maior o suficiente para mostrar o conteúdo */
 }
 
 details summary {
-    list-style: none; /* Remove a flecha */
+    cursor: pointer;
+}
+
+details[open] summary ~ * {
+    font-family: 'Ruda', sans-serif;
+    margin: 0;
+    padding: 1em 1em 1em 1em;
+}
+  
+#acordeão > details > summary {
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 1.5em;
+    padding: 0.5em;
+}
+
+#acordeão {
+    margin-top: 2em;
+    width: 100%;
+    margin-bottom: 5em;
+}
+
+details summary {
+    list-style: none; 
+}
+
+#cadeado {
+    display: inline-block;
+    text-decoration: none; 
+}
+
+#cadeado .material-symbols-outlined {
+    font-size: 48px; 
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5); 
 }
