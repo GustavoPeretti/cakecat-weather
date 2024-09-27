@@ -1,1 +1,485 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Ruda:wght@400..900&display=swap');
+
+h1 {
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 2.5em;
+    text-align: center;
+    z-index: 3;
+}
+
+.ceu {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #ff79a2, #fcbe85);
+  }
+  
+  .nuvem {
+    position: absolute;
+    background: #fff;
+    background: linear-gradient(to bottom, #fff, #f1f1f1);
+    width: 20px;
+    height: 10px;
+    border-radius: 100px;
+    filter: blur(2px);
+    opacity: 0.8;
+    animation: moveClouds 20s linear infinite;
+  }
+  
+  #n1 {
+    top: 70%;
+    left: 10%;
+    width: 100px;
+    height: 60px;
+    animation-duration: 25s;
+  }
+  
+  #n2 {
+    top: -60%;
+    left: 40%;
+    width: 200px;
+    height: 100px;
+    animation-duration: 30s;
+  }
+  
+  #n3 {
+    top: 70%;
+    left: 70%;
+    width: 300px;
+    height: 150px;
+    animation-duration: 25s;
+  }
+
+  #n4 {
+    top: 50%;
+    left: 70%;
+    width: 100px;
+    height: 50px;
+    animation-duration: 15s;
+  }
+
+  #n5 {
+    top: 30%;
+    left: 110%;
+    width: 150px;
+    height: 75px;
+    animation-duration: 60s;
+  }
+  
+  @keyframes moveClouds {
+    0% {
+      transform: translateX(-200%);
+      opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    100% {
+      transform: translateX(200%);
+        opacity: 0;
+    }
+  }
+
+.seção {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pesquisa-cidade{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#pesquisa-cidade > form > input{
+    font-family: 'Ruda', sans-serif;
+    font-size: 1em;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    box-sizing: border-box; 
+    border-radius: 0.5em;
+    border-width: 2px;
+    border-style: solid; 
+    border-color: #000000;
+    color: black;
+    margin-top: 1em;
+}
+
+#pesquisa-cidade > form {
+    width: 30em;
+}
+
+#quadro {
+    width: 80%;
+    margin-bottom: 5em;
+}
+
+#cabeçalho {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+#datas {
+    display: flex;
+    flex-direction: row;
+}
+
+#datas > * {
+    background-color: #fcbe85;
+    border-radius: 10px 10px 0 0;
+    width: 5em;
+    height: 3em;
+    font-family: 'Ruda', sans-serif;
+    text-align: center;
+}
+
+#calendario {
+    background-color: #fcbe85;
+    border-radius: 10px 10px 0 0;
+    width: 5em;
+    height: 3em;
+    font-family: 'Ruda', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#corpo {
+    background-color: #ff79a2;
+    width: 100%;
+    height: 25em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+#corpo > div > h2 {
+    color: white;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+#corpo > div > div  {
+    display: flex;
+    align-items: center;
+}
+
+#informações-cidade {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 65%;
+    margin-left: 4em;
+}
+
+#condição {
+    margin-left: 1em;
+    font-size: 1.8em;
+    color: #ffffff;
+    font-family: 'Ruda', sans-serif;
+    font-weight: bold;
+}
+
+#circulo {
+    background-color: white;
+    height: 4em;
+    width: 4em;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#minima, #maxima {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+#maxima > span {
+    color: red;
+    font-size: 1.8em;
+}
+
+#minima > span {
+    color: rgb(44, 94, 255);
+    transform: rotate(180deg);
+    font-size: 1.8em;
+}
+
+#temperaturas {
+    color: white;
+    font-family: 'Ruda', sans-serif;
+    font-size: 1.8em;
+}
+
+#grade {
+    display: flex;
+    height: 75%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 50%;
+}
+
+.linha {
+    display: flex;
+    gap: 1.5em;
+}
+
+.quadrado > * {
+    margin: 0;
+}
+
+.quadrado {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 7em;
+    height: 7em;
+    font-family: 'Ruda', sans-serif;
+}
+
+.quadrado > img {
+    width: 2.5em;
+}
+
+.destaque {
+    font-size: 1.4em;
+}
+
+.descrição {
+    font-size: 0.8em;
+}
+
+#vento {
+    width: 2.5em;
+    height: 2.4em;
+}
+
+#umidade {
+    width: 1.5em;
+    height: 2em;
+}
+
+#sem-possibilidade {
+    font-size: 1em;
+    text-align: center;
+}
+
+input {
+    border-radius: 10px;
+    padding: 1em 0.5em 1em 0.5em;
+    border: none
+}
+
+#input-temperaturas {
+    width: 3em;
+}
+
+#inputs-quadrado {
+    width: 3em;
+    border: solid rgba(0, 0, 0, 0.173) 1px;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+#condição-climatica {
+    margin-left: 1em;
+}
+
+.cadastrar {
+    padding: 1em;
+    width: 15em;
+    background-color: #97e6ff;
+    border-radius: 10px;
+    border: none;
+    z-index: 1;
+    align-items: center;
+    font-family: 'Ruda', sans-serif;
+    cursor: pointer;
+}
+
+.cadastrar:hover {
+    background-color: #5eb1cb;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Ruda', sans-serif;
+}
+
+.conceitos {
+    background-color: #fcbe85;
+    width: 33%;
+    height: 25%;
+    padding: 2em;
+    margin-top: 2em;
+}
+
+.alinhamento-conceitos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'Ruda', sans-serif;
+}
+
+.alinhamento-conceitos > input {
+    width: 50%;
+    margin-bottom: 2em;
+}
+
+.alinhamento-conceitos > textarea {
+    border-radius: 0.5em;
+    border: 0;
+    margin-bottom: 2em;
+}
+
+input[type="color"] {
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer; 
+    margin: 0;
+  }
+#botão-conceitos {
+    margin-top: 2.6em;
+    margin-left: -2.35em;
+}
+
+#borda-icones {
+    border: 1px rgba(55, 92, 226, 0.884) solid;
+    color: #1d9ac0;
+    cursor: pointer;
+    background-color: white;
+}
+
+.icones-administracao {
+    background: none;
+    border: none;
+}
+
+.itens-lista-administracao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#administracao {
+    margin-top: 7em;
+}
+
+ol {
+    padding: 0;
+    margin: 2em;
+}
+
+li {
+    background-color: #ffffff78;
+    padding: 0.3em;
+    margin-bottom: 1em;
+}
+
+#administradores {
+    width: 50%;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    background-color:#ff79a2;
+    font-family: 'Ruda', sans-serif;
+    height: 25vh;
+}
+
+#openModalBtn {
+    margin-left: 2em;
+}
+
+  #openModalBtn:hover {
+    background-color: #63b1c9;
+  }
+  
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+  }
+  
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 10px;
+  }
+
+  .modal-content > h3 {
+    font-family: 'Bree Serif', sans-serif;
+    font-size: 1.5em;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form label {
+    margin-bottom: 5px;
+  }
+  
+  form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #5d9cad;
+  }
+  
+
+  #botão-cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
