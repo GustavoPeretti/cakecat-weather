@@ -341,25 +341,45 @@
                     </form>
                 </div>
             </div>
-
+            <div>
+                <button class="cadastrar">Cadastrar</button>
+            </div>
         </div>
     </article>
     
     <article class="seção">
-        <h2>Cadastrar conceitos</h2>
-        <div  class="conceitos">
+        <h2>Gerenciar conceitos</h2>
+        <div class="conceitos">
             <div>
-                <form class="alinhamento-conceitos">
-                    <label for="">Título</label> <input type="text">
-                    <label for="">Conceito</label><textarea name="" id="" rows="5"></textarea>
-                    <label for="colorPicker">Escolha a cor do fundo:</label><br>
+                <form class="alinhamento-conceitos" id="conceitoForm">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" required>
+    
+                    <label for="conceito">Conceito</label>
+                    <textarea id="conceito" rows="5" required></textarea>
+    
+                    <label for="colorPicker" id="titulo-cor-fundo">Escolha a cor do fundo:</label><br>
                     <input type="color" id="colorPicker" name="cor-conceito" value="#97e6ff">
-                    <div id="botão-cadastro">
-                        <button class="cadastrar" >Cadastrar informações</button>
+    
+                    <div id="botao-cadastro">
+                        <button type="submit" class="cadastrar">Adicionar conceito</button>
                     </div>
                 </form>
+    
+                <h3>Conceitos cadastrados</h3>
+                <ol id="conceitosCadastrados">
+                </ol>
             </div>
-        </div>    
+        </div>
+    
+        <div id="modalConceito" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitulo">Título do Conceito</h2>
+                <p id="modalDescricao">Descrição completa do conceito.</p>
+                <p id="modalCor"><strong>Cor de Fundo:</strong> <span id="modalCor"></span></p>
+            </div>
+        </div>
     </article>
 
     <article class="seção" id="administracao">
@@ -369,9 +389,8 @@
                 <li class="itens-lista-administracao">
                     Administrador X 
                     <div>
-                        <button class="icones-administracao"><span class="material-symbols-outlined" id="borda-icones">person_remove</span></button>
-                        <button class="icones-administracao"><span class="material-symbols-outlined" id="borda-icones">edit</span></button>
-                        <button class="icones-administracao"><span class="material-symbols-outlined" id="borda-icones">visibility</span></button>
+                        <button class="icones-administracao"><span class="material-symbols-outlined">person_remove</span></button>
+                        <button class="icones-administracao"><span class="material-symbols-outlined">edit</span></button>
                     </div>
                 </li>
             </ol>
@@ -399,5 +418,6 @@
         
     </article>
     <script src="../static/assets/js/script-modal.js"></script>
+    <script src="../static/assets/js/script-conceitos.js"></script>
 </body>
 </html>

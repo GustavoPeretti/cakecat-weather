@@ -359,6 +359,10 @@ input[type="color"] {
     margin-left: -2.35em;
 }
 
+.conceitos > * {
+    font-family: 'Ruda', sans-serif;
+}
+
 #borda-icones {
     border: 1px rgba(55, 92, 226, 0.884) solid;
     color: #1d9ac0;
@@ -483,3 +487,110 @@ li {
     justify-content: center;
     align-items: center;
   }
+
+  .conceitos {
+    background-color: #ffc299;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.alinhamento-conceitos input {
+    width: 30%;
+}
+
+#colorPicker {
+    width: 50px;
+    height: 50px;
+}
+
+#titulo-cor-fundo {
+    margin-top: 2em;
+}
+
+.alinhamento-conceitos textarea {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#botao-cadastro {
+    text-align: center;
+}
+
+button.cadastrar {
+    background-color: #97e6ff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.cadastrar:hover {
+    background-color: #7dc1e8;
+}
+
+ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+.itens-lista-administracao {
+    background-color: #ffe5cc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button.icones-administracao {
+    background-color: #97e6ff;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Estilos básicos para o modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    border-radius: 8px;
+}
+
+#modalDescricao, #modalCor {
+    font-family: 'Ruda', sans-serif;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
