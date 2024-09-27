@@ -13,9 +13,9 @@ h1 {
     height: 15vh;
     overflow: hidden;
     background: linear-gradient(to bottom, #ff79a2, #fcbe85);
-  }
-  
-  .nuvem {
+}
+
+.nuvem {
     position: absolute;
     background: #fff;
     background: linear-gradient(to bottom, #fff, #f1f1f1);
@@ -25,52 +25,52 @@ h1 {
     filter: blur(2px);
     opacity: 0.8;
     animation: moveClouds 20s linear infinite;
-  }
-  
-  #n1 {
+}
+
+#n1 {
     top: 70%;
     left: 10%;
     width: 100px;
     height: 60px;
     animation-duration: 25s;
-  }
-  
-  #n2 {
+}
+
+#n2 {
     top: -60%;
     left: 40%;
     width: 200px;
     height: 100px;
     animation-duration: 30s;
-  }
-  
-  #n3 {
+}
+
+#n3 {
     top: 70%;
     left: 70%;
     width: 300px;
     height: 150px;
     animation-duration: 25s;
-  }
+}
 
-  #n4 {
+#n4 {
     top: 50%;
     left: 70%;
     width: 100px;
     height: 50px;
     animation-duration: 15s;
-  }
+}
 
-  #n5 {
+#n5 {
     top: 30%;
     left: 110%;
     width: 150px;
     height: 75px;
     animation-duration: 60s;
-  }
-  
-  @keyframes moveClouds {
+}
+
+@keyframes moveClouds {
     0% {
-      transform: translateX(-200%);
-      opacity: 0;
+        transform: translateX(-200%);
+        opacity: 0;
     }
 
     15% {
@@ -78,10 +78,10 @@ h1 {
     }
 
     100% {
-      transform: translateX(200%);
+        transform: translateX(200%);
         opacity: 0;
     }
-  }
+}
 
 .seção {
     display: flex;
@@ -89,28 +89,28 @@ h1 {
     align-items: center;
 }
 
-#pesquisa-cidade{
+#pesquisa-cidade {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-#pesquisa-cidade > form > input{
+#pesquisa-cidade>form>input {
     font-family: 'Ruda', sans-serif;
     font-size: 1em;
     width: 100%;
     height: 50px;
     padding: 10px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     border-radius: 0.5em;
     border-width: 2px;
-    border-style: solid; 
+    border-style: solid;
     border-color: #000000;
     color: black;
     margin-top: 1em;
 }
 
-#pesquisa-cidade > form {
+#pesquisa-cidade>form {
     width: 30em;
 }
 
@@ -122,7 +122,7 @@ h1 {
 #cabeçalho {
     width: 100%;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     text-align: center;
     align-items: center;
     margin-top: 3em;
@@ -133,7 +133,7 @@ h1 {
     flex-direction: row;
 }
 
-#datas > * {
+#datas>* {
     background-color: #fcbe85;
     border-radius: 10px 10px 0 0;
     width: 5em;
@@ -163,13 +163,13 @@ h1 {
     flex-direction: row;
 }
 
-#corpo > div > h2 {
+#corpo>div>h2 {
     color: white;
     font-size: 2.5em;
     margin: 0;
 }
 
-#corpo > div > div  {
+#corpo>div>div {
     display: flex;
     align-items: center;
 }
@@ -201,18 +201,19 @@ h1 {
     display: flex;
 }
 
-#minima, #maxima {
+#minima,
+#maxima {
     display: flex;
     align-items: center;
     font-weight: bold;
 }
 
-#maxima > span {
+#maxima>span {
     color: red;
     font-size: 1.8em;
 }
 
-#minima > span {
+#minima>span {
     color: rgb(44, 94, 255);
     transform: rotate(180deg);
     font-size: 1.8em;
@@ -237,7 +238,7 @@ h1 {
     gap: 1.5em;
 }
 
-.quadrado > * {
+.quadrado>* {
     margin: 0;
 }
 
@@ -252,7 +253,7 @@ h1 {
     font-family: 'Ruda', sans-serif;
 }
 
-.quadrado > img {
+.quadrado>img {
     width: 2.5em;
 }
 
@@ -336,12 +337,12 @@ a {
     font-family: 'Ruda', sans-serif;
 }
 
-.alinhamento-conceitos > input {
+.alinhamento-conceitos>input {
     width: 50%;
     margin-bottom: 2em;
 }
 
-.alinhamento-conceitos > textarea {
+.alinhamento-conceitos>textarea {
     border-radius: 0.5em;
     border: 0;
     margin-bottom: 2em;
@@ -351,15 +352,16 @@ input[type="color"] {
     width: 50px;
     height: 50px;
     border: none;
-    cursor: pointer; 
+    cursor: pointer;
     margin: 0;
-  }
+}
+
 #botão-conceitos {
     margin-top: 2.6em;
     margin-left: -2.35em;
 }
 
-.conceitos > * {
+.conceitos>* {
     font-family: 'Ruda', sans-serif;
 }
 
@@ -401,7 +403,7 @@ li {
     width: 50%;
     margin-top: 3em;
     margin-bottom: 3em;
-    background-color:#ff79a2;
+    background-color: #ff79a2;
     font-family: 'Ruda', sans-serif;
     height: 25vh;
 }
@@ -410,85 +412,85 @@ li {
     margin-left: 2em;
 }
 
-  #openModalBtn:hover {
+#openModalBtn:hover {
     background-color: #63b1c9;
-  }
-  
-  .modal {
-    display: none; 
+}
+
+.modal {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-  }
-  
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
-  .modal-content {
+
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 30%;
     border-radius: 10px;
-  }
+}
 
-  .modal-content > h3 {
+.modal-content>h3 {
     font-family: 'Bree Serif', sans-serif;
     font-size: 1.5em;
-  }
-  
-  .close {
+}
+
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
-  
-  form {
+}
+
+form {
     display: flex;
     flex-direction: column;
-  }
-  
-  form label {
+}
+
+form label {
     margin-bottom: 5px;
-  }
-  
-  form input {
+}
+
+form input {
     margin-bottom: 15px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-  }
-  
-  form button {
+}
+
+form button {
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  form button:hover {
-    background-color: #5d9cad;
-  }
-  
+}
 
-  #botão-cadastro {
+form button:hover {
+    background-color: #5d9cad;
+}
+
+
+#botão-cadastro {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .conceitos {
+.conceitos {
     background-color: #ffc299;
     padding: 20px;
     border-radius: 8px;
@@ -557,7 +559,6 @@ button.icones-administracao {
     margin-left: 5px;
 }
 
-/* Estilos básicos para o modal */
 .modal {
     display: none;
     position: fixed;
@@ -566,7 +567,7 @@ button.icones-administracao {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
@@ -578,7 +579,8 @@ button.icones-administracao {
     border-radius: 8px;
 }
 
-#modalDescricao, #modalCor {
+#modalDescricao,
+#modalCor {
     font-family: 'Ruda', sans-serif;
 }
 
@@ -589,7 +591,8 @@ button.icones-administracao {
     font-weight: bold;
 }
 
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
