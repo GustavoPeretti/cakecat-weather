@@ -4,10 +4,10 @@ import datetime
 
 tempo = Blueprint('tempo', __name__)
 
-@tempo.route('/<cidade>/<data>', methods=['GET'])
-def buscar_tempo(cidade, data):
+@tempo.route('/<cep>/<data>', methods=['GET'])
+def buscar_tempo(cep, data):
     try:
-        resultado = db.query('SELECT * FROM tempo WHERE cep = %s AND data_tempo = %s;', cidade, data)
+        resultado = db.query('SELECT * FROM tempo WHERE cep = %s AND data_tempo = %s;', cep, data)
 
         if len(resultado) == 0:
             return jsonify({'status': False, 'mensagem': 'Recurso não foi encontrado.'}), 404
@@ -85,10 +85,23 @@ def cadastrar_tempo():
     
     return jsonify({'status': True, 'mensagem': 'Recurso criado.'}), 201
 
-@tempo.route('/<cidade>/<data>', methods=['PUT'])
-def atualizar_tempo(cidade, data):
+@tempo.route('/<cep>/<data>', methods=['PUT'])
+def atualizar_tempo(cep, data):
     pass
 
-@tempo.route('/<cidade>/<data>', methods=['DELETE'])
-def deletar_tempo(cidade, data):
-    pass
+@tempo.route('/<cep>/<data>', methods=['DELETE'])
+def deletar_tempo(cep, data):
+    try:
+        resultado = db.query('SELECT * FROM tempo WHERE cep = %s AND data_tempo = %s;', cep, data)
+
+        if len(resultado) == 0:
+            return jsonify({'status': False, 'mensagem': 'Recurso não foi encontrado.'}), 404
+    except:
+        return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
+    
+    try:
+        db.query('DELETE FROM tempo WHERE cep = %s AND data_tempo = %s;', cep, data)
+    except:
+        return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
+
+    return jsonify({'status': True, 'mensagem': 'Recurso deletado.'}), 200
