@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 from ..database.db import db
-import datetime
 
 tempo = Blueprint('tempo', __name__)
 
