@@ -426,7 +426,22 @@
                         <label for="password">Senha:</label>
                         <input type="password" id="password" name="password" required>
       
-                        <button type="submit" class="cadastrar">Cadastrar</button>
+                        <button id="botao-final-cadastrar-administrador" type="submit" class="cadastrar">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+            <div id="editarAdminModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3>Editar administrador</h2>
+                    <form id="editarAdminForm">
+                        <label for="username">Usuário:</label>
+                        <input type="text" id="editarUsername" name="username" required>
+      
+                        <label for="password">Senha:</label>
+                        <input type="password" id="editarPassword" placeholder="(mesma senha)" name="password" required>
+      
+                        <button id="botao-final-editar-administrador" type="submit" class="cadastrar">Editar</button>
                     </form>
                 </div>
             </div>
@@ -654,9 +669,13 @@
     <script>
         let conceitoAtual;
 
-        document.querySelector('span.close').onclick = () => {
-            document.getElementById('modalConceito').style.display = "none";
-        }
+        document.querySelectorAll('span.close').forEach((element) => {
+            element.onclick = () => {
+                document.getElementById('modalConceito').style.display = "none";
+                document.getElementById('adminModal').style.display = "none";
+                document.getElementById('editarAdminModal').style.display = "none";
+            }
+        });
 
         window.addEventListener('load', () => {
             gerarListaConceitos();
@@ -755,7 +774,125 @@
         });
     </script>
     <script>
+        let administradorAtual;
+
+        window.addEventListener('load', () => {
+            gerarListaAdministradores();
+        })
         
+        async function gerarListaAdministradores() {
+            document.querySelector('#adminList').innerHTML = '';
+
+            let requisicaoAdministradores = await fetch('/api/administrador');
+
+            let administradores = (await requisicaoAdministradores.json()).resultado;
+
+            for (let administrador of administradores) {
+                let novoAdministrador = document.createElement('li');
+                novoAdministrador.className = 'itens-lista-administracao';
+
+                novoAdministrador.innerHTML = `
+                    ${administrador.usuario}
+                    <div>
+                        <button id="botao-deletar-administrador-${administrador.usuario}" class="icones-administracao botao-deletar-administrador"><span class="material-symbols-outlined">person_remove</span></button>
+                        <button id="botao-editar-administrador-${administrador.usuario}" class="icones-administracao botao-editar-administrador"><span class="material-symbols-outlined">edit</span></button>
+                    </div>
+                `;
+
+                novoAdministrador.querySelector(`.botao-editar-administrador`).addEventListener('click', function() {
+                    administradorAtual = administrador.usuario;
+
+                    document.querySelector('#editarAdminModal').style.display = 'block';
+                    
+                    document.querySelector('#editarUsername').value = administrador.usuario;
+                });
+
+                novoAdministrador.querySelector(`.botao-deletar-administrador`).addEventListener('click', async function() {
+
+                    let requisicaoDeletar = await fetch('/api/administrador/' + administrador.usuario, {
+                        method: 'DELETE'
+                    });
+        
+                    let resposta = await requisicaoDeletar.json();
+        
+                    alert(resposta.mensagem);
+
+                    gerarListaAdministradores();
+                });
+
+                document.querySelector('#adminList').appendChild(novoAdministrador);
+            }
+        }
+
+        document.querySelector('#openModalBtn').addEventListener('click', () => {
+            document.querySelector('#adminModal').style.display = 'block';
+        });
+
+        document.querySelector('#botao-final-editar-administrador').addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            let bodyRequisicao = {
+                'usuario': document.querySelector('#editarUsername').value,
+                'senha': document.querySelector('#editarPassword').value,
+            };
+
+            if (document.querySelector('#editarPassword').value.length == 0) {
+                delete bodyRequisicao['senha'];
+            }
+
+            let requisicaoEnvio = await fetch('/api/administrador/' + administradorAtual, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    bodyRequisicao
+                )
+            });
+
+            resposta = await requisicaoEnvio.json();
+
+            alert(resposta.mensagem);
+
+            document.getElementById('editarAdminForm').reset();
+            document.getElementById('editarAdminModal').style.display = "none";
+            gerarListaAdministradores();
+        })
+
+        document.querySelector('#botao-final-cadastrar-administrador').addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            let bodyRequisicao = {
+                'usuario': document.querySelector('#username').value,
+                'senha': document.querySelector('#password').value,
+            };
+
+            if (document.querySelector('#password').value.length == 0) {
+                delete bodyRequisicao['senha'];
+            }
+
+            let requisicaoEnvio = await fetch('/api/administrador/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    bodyRequisicao
+                )
+            });
+
+            resposta = await requisicaoEnvio.json();
+
+            alert(resposta.mensagem);
+
+            document.getElementById('adminForm').reset();
+            document.getElementById('adminModal').style.display = "none";
+            gerarListaAdministradores();
+        })
+        
+
     </script>
 </body>
 </html>

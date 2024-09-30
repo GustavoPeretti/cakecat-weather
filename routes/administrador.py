@@ -1,10 +1,13 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from ..database.db import db
 
 administrador = Blueprint('administrador', __name__)
 
 @administrador.route('/', methods=['GET'])
 def buscar_administradores():
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     try:
         resultado = db.query('SELECT usuario FROM administradores;')
 
@@ -17,6 +20,9 @@ def buscar_administradores():
 
 @administrador.route('/', methods=['POST'])
 def cadastrar_administrador():
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     dados = request.json
 
     parametros = [
@@ -49,6 +55,9 @@ def cadastrar_administrador():
 
 @administrador.route('/<usuario>', methods=['PUT'])
 def atualizar_administrador(usuario):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     dados = request.json
 
     try:
@@ -79,6 +88,9 @@ def atualizar_administrador(usuario):
 
 @administrador.route('/<usuario>', methods=['DELETE'])
 def deletar_tempo(usuario):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     try:
         resultado = db.query('SELECT * FROM administradores WHERE usuario = %s;', usuario)
 

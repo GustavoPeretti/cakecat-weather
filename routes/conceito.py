@@ -1,10 +1,13 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from ..database.db import db
 
 conceito = Blueprint('conceito', __name__)
 
 @conceito.route('/<titulo>', methods=['GET'])
 def buscar_conceito(titulo):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+
     try:
         resultado = db.query('SELECT * FROM conceitos WHERE titulo = %s;', titulo)
 
@@ -19,6 +22,9 @@ def buscar_conceito(titulo):
 
 @conceito.route('/', methods=['GET'])
 def buscar_conceitos():
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     try:
         resultado = db.query('SELECT titulo, descricao, cor FROM conceitos;')
 
@@ -31,6 +37,9 @@ def buscar_conceitos():
 
 @conceito.route('/', methods=['POST'])
 def cadastrar_conceito():
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     dados = request.json
 
     parametros = [
@@ -66,6 +75,9 @@ def cadastrar_conceito():
 
 @conceito.route('/<titulo>', methods=['PUT'])
 def atualizar_conceito(titulo):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     dados = request.json
 
     try:
@@ -97,6 +109,9 @@ def atualizar_conceito(titulo):
 
 @conceito.route('/<titulo>', methods=['DELETE'])
 def deletar_conceito(titulo):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     try:
         resultado = db.query('SELECT * FROM conceitos WHERE titulo = %s;', titulo)
 

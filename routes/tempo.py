@@ -5,6 +5,9 @@ tempo = Blueprint('tempo', __name__)
 
 @tempo.route('/<cep>/<data>', methods=['GET'])
 def buscar_tempo(cep, data):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+
     try:
         resultado = db.query('SELECT * FROM tempos WHERE cep = %s AND data_tempo = %s;', cep, data)
 
@@ -25,6 +28,9 @@ def buscar_tempo(cep, data):
 
 @tempo.route('/', methods=['POST'])
 def cadastrar_tempo():
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+
     dados = request.json
 
     parametros = [
@@ -86,6 +92,9 @@ def cadastrar_tempo():
 
 @tempo.route('/<cep>/<data>', methods=['PUT'])
 def atualizar_tempo(cep, data):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+
     dados = request.json
 
     try:
@@ -124,6 +133,9 @@ def atualizar_tempo(cep, data):
 
 @tempo.route('/<cep>/<data>', methods=['DELETE'])
 def deletar_tempo(cep, data):
+    if 'usuario' not in session:
+        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
+    
     try:
         resultado = db.query('SELECT * FROM tempos WHERE cep = %s AND data_tempo = %s;', cep, data)
 
