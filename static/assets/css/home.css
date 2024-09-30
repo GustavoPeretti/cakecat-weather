@@ -85,7 +85,7 @@ nav .material-symbols-outlined {
     font-size: 2.5em;
 }
 
-#pesquisa-cidade > form > input{
+#pesquisa-cidade > form > select {
     font-family: 'Ruda', sans-serif;
     font-size: 1em;
     width: 100%;
@@ -196,12 +196,12 @@ nav .material-symbols-outlined {
     font-weight: bold;
 }
 
-#maxima > span {
+#maxima > .material-symbols-outlined {
     color: red;
     font-size: 1.8em;
 }
 
-#minima > span {
+#minima > .material-symbols-outlined {
     color: rgb(44, 94, 255);
     transform: rotate(180deg);
     font-size: 1.8em;

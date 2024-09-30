@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="..\static\assets\css\home.css">
     <link rel="stylesheet" href="..\static\assets\css\geral.css">
     <link rel="stylesheet" href="..\static\assets\css\home2.css">
+    <style>
+        #calendario input {
+            width: 0;
+            padding: 0;
+            border: none;
+        }
+
+        #calendario span {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,7 +49,9 @@
             <div id="pesquisa-cidade">
                 <h2>Procure sua cidade</h2>
                 <form action="">
-                    <input type="text" placeholder="Cidade">
+                    <select id="">
+                        <option value="" disabled selected>Selecione um estado e uma cidade</option>
+                    </select>
                 </form>
 
                 <div class="box-mapa">
@@ -291,25 +304,24 @@
                                 <p>data</p>
                             </div>
                         </div>
-                        <div id="calendario"><span class="material-symbols-outlined">
-                                calendar_month
-                            </span></div>
-
-
+                        <div id="calendario">
+                            <input type="date" name="" id="">
+                            <span class="material-symbols-outlined">calendar_month</span>
+                        </div>
                     </div>
 
                     <div id="corpo">
                         <div id="informações-cidade">
-                            <h2>Xique-Xique (BA)</h2>
+                            <h2>Escolha uma cidade</h2>
                             <div>
                                 <div id="circulo">
                                     <img width="48" height="48" src="https://img.icons8.com/color/48/partly-cloudy-day--v1.png" alt="partly-cloudy-day--v1" />
                                 </div>
-                                <div><p id="condição">Nublado</p></div>
+                                <div><p id="condição">-----</p></div>
                             </div>
                             <div id="temperaturas">
-                                <div id="minima"><span class="material-symbols-outlined">straight</span>25°C</div>
-                                <div id="maxima"><span class="material-symbols-outlined">straight</span>25°C</div>
+                                <div id="minima"><span class="material-symbols-outlined">straight</span><span id="campo-minima">--</span>°C</div>
+                                <div id="maxima"><span class="material-symbols-outlined">straight</span><span id="campo-maxima">--</span>°C</div>
                             </div>
                         </div>
 
@@ -317,19 +329,19 @@
                             <div class="linha">
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\chuva.png" alt="">
-                                    <p class="destaque">100 mm</p>
+                                    <p class="destaque"><span id="campo-chuva">---</span> mm</p>
                                     <p class="descrição">Chuva</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\vento.png" alt="" id="vento">
-                                    <p class="destaque">11 km/h</p>
+                                    <p class="destaque"><span id="campo-vento">--</span> km/h</p>
                                     <p class="descrição">Vento</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\umidade.png" alt="" id="umidade">
-                                    <p class="destaque">41%</p>
+                                    <p class="destaque"><span id="campo-umidade">--</span>%</p>
                                     <p class="descrição">Umidade</p>
                                 </div>
                             </div>
@@ -337,19 +349,19 @@
                             <div class="linha">
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\arco-iris.png" alt="">
-                                    <p class="destaque" id="sem-possibilidade">Sem possibilidade</p>
+                                    <p class="destaque" id="sem-possibilidade">-------</p>
                                     <p class="descrição">Arco-íris</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\sol.png" alt="" id="vento">
-                                    <p class="destaque">07h - 18h</p>
+                                    <p class="destaque" id="campo-periodo-sol">--h - --h</p>
                                     <p class="descrição">Período de Sol</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\lua.png" alt="" id="umidade">
-                                    <p class="destaque">Crescente</p>
+                                    <p class="destaque" id="campo-lua">-----</p>
                                     <p class="descrição">Tipo de lua</p>
                                 </div>
                             </div>
@@ -394,13 +406,189 @@
                 </details>
             </div>
         </article>
-
-
     </main>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="..\static\assets\js\script.js"></script>
+
+    <script>
+        let estado;
+        let cidades;
+
+        let siglaEstados = {
+            'AC': 'Acre',
+            'AL': 'Alagoas',
+            'AP': 'Amapá',
+            'AM': 'Amazonas',
+            'BA': 'Bahia',
+            'CE': 'Ceará',
+            'DF': 'Distrito Federal',
+            'ES': 'Espírito Santo',
+            'GO': 'Goiás',
+            'MA': 'Maranhão',
+            'MT': 'Mato Grosso',
+            'MS': 'Mato Grosso do Sul',
+            'MG': 'Minas Gerais',
+            'PA': 'Pará',
+            'PB': 'Paraíba',
+            'PR': 'Paraná',
+            'PE': 'Pernambuco',
+            'PI': 'Piauí',
+            'RJ': 'Rio de Janeiro',
+            'RN': 'Rio Grande do Norte',
+            'RS': 'Rio Grande do Sul',
+            'RO': 'Rondônia',
+            'RR': 'Roraima',
+            'SC': 'Santa Catarina',
+            'SP': 'São Paulo',
+            'SE': 'Sergipe',
+            'TO': 'Tocantins'
+        }
+
+        window.addEventListener('load', async () => {
+            if (window.location.hash == '')  {
+                return;
+            }
+
+            estado = siglaEstados[window.location.hash.slice(1).toUpperCase()];
+            
+            let requisicaoCidades = await fetch('/api/cidade/' + estado);
+
+            let respostaCidades = (await requisicaoCidades.json()).resultado;
+
+            let stringCidades = '<option value="" disabled selected>Selecione um estado e uma cidade</option>';
+
+            for (cidade of respostaCidades) {
+                stringCidades += `<option value="${cidade.cep}|${cidade.cidade}">${cidade.cidade}</option>`;
+            };
+
+            document.querySelector('select').innerHTML = stringCidades;
+        });
+
+        window.onhashchange = async () => {
+            estado = siglaEstados[window.location.hash.slice(1).toUpperCase()];
+            
+            let requisicaoCidades = await fetch('/api/cidade/' + estado);
+
+            let respostaCidades = (await requisicaoCidades.json()).resultado;
+
+            let stringCidades = '<option value="" disabled selected>Selecione um estado e uma cidade</option>';
+
+            for (cidade of respostaCidades) {
+                stringCidades += `<option value="${cidade.cep}|${cidade.cidade}">${cidade.cidade}</option>`;
+            };
+
+            document.querySelector('select').innerHTML = stringCidades;
+        }
+    </script>
+    <script>
+        let data;
+        let cidade;
+        let tempo;
+
+        window.addEventListener('load', () => {
+            let hoje = new Date();
+            let ano = hoje.getFullYear();
+            let mes = String(hoje.getMonth() + 1).padStart(2, '0');
+            let dia = String(hoje.getDate()).padStart(2, '0');
+
+            data = `${ano}-${mes}-${dia}`;
+
+            document.querySelector('#datas p').textContent = `${dia}/${mes}`
+        });
+
+        document.querySelector('#calendario span').onclick = () => {
+            document.querySelector('#calendario input').showPicker();
+        };
+
+        document.querySelector('select').onchange = () => {
+            cidade = document.querySelector('select').value.split('|');
+            cidade = {
+                'cep': cidade[0],
+                'cidade': cidade[1]
+            };
+
+            document.querySelector('#informações-cidade h2').textContent = cidade.cidade;
+
+            alterarInterfaceTempo(cidade, data);
+        };
+
+        document.querySelector('#calendario input').onchange = async () => {
+            if (cidade == undefined) {
+                return;
+            }
+
+            let [aaaa, mm, dd] = document.querySelector('#calendario input').value.split('-').map(Number);
+
+            mm = String(mm).padStart(2, '0'); 
+            dd = String(dd).padStart(2, '0');
+
+            document.querySelector('#datas p').textContent = `${dd}/${mm}`
+
+            data = document.querySelector('#calendario input').value;
+
+            alterarInterfaceTempo(cidade, data);
+            
+        };
+
+        async function alterarInterfaceTempo(cidade, data) {
+            document.querySelector('#condição').textContent = '-----';
+            document.querySelector('#campo-minima').textContent = '--';
+            document.querySelector('#campo-maxima').textContent = '--';
+            document.querySelector('#campo-chuva').textContent = '---';
+            document.querySelector('#campo-vento').textContent = '--';
+            document.querySelector('#campo-umidade').textContent = '--';
+            document.querySelector('#sem-possibilidade').textContent = '------';
+            document.querySelector('#campo-periodo-sol').textContent = '--h - --h';
+            document.querySelector('#campo-lua').textContent = '-----';
+
+            let requisicaoTempo = await fetch('/api/tempo/' + cidade.cep + '/' + data);
+
+            if (requisicaoTempo.status == 404) {
+                return;
+            }
+
+            tempo = (await requisicaoTempo.json()).resultado;
+
+            document.querySelector('#condição').textContent = tempo.condicao;
+            document.querySelector('#campo-minima').textContent = tempo.minima;
+            document.querySelector('#campo-maxima').textContent = tempo.maxima;
+            document.querySelector('#campo-chuva').textContent = tempo.chuva;
+            document.querySelector('#campo-vento').textContent = tempo.vento;
+            document.querySelector('#campo-umidade').textContent = tempo.umidade;
+            document.querySelector('#sem-possibilidade').textContent = tempo.arco_iris;
+
+            let [inicioSolHoras, inicioSolMinutos, inicioSolSegundos] = tempo.inicio_sol.split(':').map(Number);
+
+            let [fimSolHoras, fimSolMinutos, fimSolSegundos] = tempo.fim_sol.split(':').map(Number);
+            
+            document.querySelector('#campo-periodo-sol').textContent = inicioSolHoras.toString() + 'h - ' + fimSolHoras.toString() + 'h';
+            document.querySelector('#campo-lua').textContent = tempo.lua;
+        }
+    </script>
+    <script>
+        window.addEventListener('load', async () => {
+            let requisicaoConceitos = await fetch('/api/conceito');
+
+            let conceitos = (await requisicaoConceitos.json()).resultado;
+
+            document.querySelector('#acordeão').innerHTML = ''
+
+            if (conceitos) {
+                for (let conceito of conceitos) {
+                    document.querySelector('#acordeão').innerHTML += `<details open>
+                        <summary style="background-color: #${conceito.cor}">${conceito.titulo}</summary>
+                        <p>${conceito.descricao}</p>
+                    </details>`
+                }
+            } else {
+                document.querySelector('#acordeão').innerHTML = '<p style="font-family: \'Bree Serif\', sans-serif; text-align: center;">Ainda não há conteúdo.</p>'
+            }
+
+            
+        });
+    </script>
 
 </body>
 

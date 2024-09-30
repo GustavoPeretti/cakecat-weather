@@ -5,9 +5,6 @@ tempo = Blueprint('tempo', __name__)
 
 @tempo.route('/<cep>/<data>', methods=['GET'])
 def buscar_tempo(cep, data):
-    if 'usuario' not in session:
-        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
-
     try:
         resultado = db.query('SELECT * FROM tempos WHERE cep = %s AND data_tempo = %s;', cep, data)
 

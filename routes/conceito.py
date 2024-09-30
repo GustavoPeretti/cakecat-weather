@@ -5,9 +5,6 @@ conceito = Blueprint('conceito', __name__)
 
 @conceito.route('/<titulo>', methods=['GET'])
 def buscar_conceito(titulo):
-    if 'usuario' not in session:
-        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
-
     try:
         resultado = db.query('SELECT * FROM conceitos WHERE titulo = %s;', titulo)
 
@@ -22,16 +19,10 @@ def buscar_conceito(titulo):
 
 @conceito.route('/', methods=['GET'])
 def buscar_conceitos():
-    if 'usuario' not in session:
-        return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
-    
-    try:
-        resultado = db.query('SELECT titulo, descricao, cor FROM conceitos;')
+    resultado = db.query('SELECT titulo, descricao, cor FROM conceitos;')
 
-        if len(resultado) == 0:
-            return jsonify({'status': False, 'mensagem': 'Nenhum recurso não foi encontrado.'}), 404
-    except:
-        return jsonify({'status': False, 'mensagem': 'Houve um erro ao processar os dados.'}), 500
+    if len(resultado) == 0:
+        return jsonify({'status': False, 'mensagem': 'Nenhum recurso não foi encontrado.'}), 404
 
     return jsonify({'status': True, 'resultado': resultado}), 200
 

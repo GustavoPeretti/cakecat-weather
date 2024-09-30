@@ -8,13 +8,10 @@ def buscar_administradores():
     if 'usuario' not in session:
         return jsonify({'status': False, 'mensagem': 'Não autorizado.'}), 401
     
-    try:
-        resultado = db.query('SELECT usuario FROM administradores;')
+    resultado = db.query('SELECT usuario FROM administradores;')
 
-        if len(resultado) == 0:
-            return jsonify({'status': False, 'mensagem': 'Nenhum recurso não foi encontrado.'}), 404
-    except:
-        return jsonify({'status': False, 'mensagem': 'Houve um erro ao processar os dados.'}), 500
+    if len(resultado) == 0:
+        return jsonify({'status': False, 'mensagem': 'Nenhum recurso não foi encontrado.'}), 404
 
     return jsonify({'status': True, 'resultado': resultado}), 200
 
