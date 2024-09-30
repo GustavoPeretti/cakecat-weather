@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="..\static\assets\css\home2.css">
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <style>
+        #calendario input {
+            width: 0;
+            padding: 0;
+        }
+
+        #calendario span {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="ceu">
@@ -24,7 +34,9 @@
         <div id="pesquisa-cidade">
             <h2>Procure sua cidade</h2>
             <form action="">
-                <input type="text" placeholder="Cidade">
+                <select id="">
+                    <option value="" disabled selected>Selecione um estado e uma cidade</option>
+                </select>
             </form>
 
             <div class="box-mapa">
@@ -276,15 +288,19 @@
                             <p>data</p>
                         </div>
                     </div>
-                    <div id="calendario"><span class="material-symbols-outlined">
-                            calendar_month
-                        </span></div>
+                    <div id="lixeira">
+                        <span class="material-symbols-outlined">delete</span>
+                    </div>
+                    <div id="calendario">
+                        <input type="date" name="" id="">
+                        <span class="material-symbols-outlined">calendar_month</span>
+                    </div>
                 </div>
 
                 <div>
                     <form action="" id="corpo">
                         <div id="informações-cidade">
-                            <h2>Xique-Xique (BA)</h2>
+                            <h2>Escolha uma cidade</h2>
                             <div>
                                 <div id="circulo">
                                     <img width="48" height="48" src="https://img.icons8.com/color/48/partly-cloudy-day--v1.png" alt="partly-cloudy-day--v1" />
@@ -301,19 +317,19 @@
                             <div class="linha">
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\chuva.png" alt="">
-                                    <p class="destaque"><input type="text" class="inputs-admin" id="inputs-quadrado">mm</p>
+                                    <p class="destaque"><input id="input-chuva" type="text" class="inputs-admin inputs-quadrado">mm</p>
                                     <p class="descrição">Chuva</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\vento.png" alt="" id="vento">
-                                    <p class="destaque"><input type="text" class="inputs-admin" id="inputs-quadrado">km/h</p>
+                                    <p class="destaque"><input id="input-vento" type="text" class="inputs-admin inputs-quadrado">km/h</p>
                                     <p class="descrição">Vento</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\umidade.png" alt="" id="umidade">
-                                    <p class="destaque"><input type="text" class="inputs-admin" id="inputs-quadrado"></p>
+                                    <p class="destaque"><input id="input-umidade" type="text" class="inputs-admin inputs-quadrado"></p>
                                     <p class="descrição">Umidade</p>
                                 </div>
                             </div>
@@ -321,19 +337,19 @@
                             <div class="linha">
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\arco-iris.png" alt="">
-                                    <p class="destaque" id="sem-possibilidade"><input type="text" class="inputs-admin" id="inputs-quadrado"></p>
+                                    <p class="destaque" id="sem-possibilidade"><input id="input-arco-iris" type="text" class="inputs-admin inputs-quadrado"></p>
                                     <p class="descrição">Arco-íris</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\sol.png" alt="" id="vento">
-                                    <p class="destaque"><input type="text" class="inputs-admin" id="inputs-quadrado"></p>
+                                    <p class="destaque"><input id="input-periodo-sol" type="text" class="inputs-admin inputs-quadrado"></p>
                                     <p class="descrição">Período de Sol</p>
                                 </div>
 
                                 <div class="quadrado">
                                     <img src="..\static\assets\img\home\lua.png" alt="" id="umidade">
-                                    <p class="destaque"><input type="text" class="inputs-admin" id="inputs-quadrado"></p>
+                                    <p class="destaque"><input type="text" id="input-lua" class="inputs-admin inputs-quadrado"></p>
                                     <p class="descrição">Tipo de lua</p>
                                 </div>
                             </div>
@@ -342,7 +358,7 @@
                 </div>
             </div>
             <div>
-                <button class="cadastrar">Cadastrar</button>
+                <button id="botao-cadastrar-tempo" class="cadastrar">Cadastrar/Alterar</button>
             </div>
         </div>
     </article>
@@ -419,5 +435,221 @@
     </article>
     <script src="../static/assets/js/script-modal.js"></script>
     <script src="../static/assets/js/script-conceitos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="..\static\assets\js\script.js"></script>
+    <script>
+        let estado;
+        let cidades;
+
+        let siglaEstados = {
+            'AC': 'Acre',
+            'AL': 'Alagoas',
+            'AP': 'Amapá',
+            'AM': 'Amazonas',
+            'BA': 'Bahia',
+            'CE': 'Ceará',
+            'DF': 'Distrito Federal',
+            'ES': 'Espírito Santo',
+            'GO': 'Goiás',
+            'MA': 'Maranhão',
+            'MT': 'Mato Grosso',
+            'MS': 'Mato Grosso do Sul',
+            'MG': 'Minas Gerais',
+            'PA': 'Pará',
+            'PB': 'Paraíba',
+            'PR': 'Paraná',
+            'PE': 'Pernambuco',
+            'PI': 'Piauí',
+            'RJ': 'Rio de Janeiro',
+            'RN': 'Rio Grande do Norte',
+            'RS': 'Rio Grande do Sul',
+            'RO': 'Rondônia',
+            'RR': 'Roraima',
+            'SC': 'Santa Catarina',
+            'SP': 'São Paulo',
+            'SE': 'Sergipe',
+            'TO': 'Tocantins'
+        }
+
+        window.addEventListener('load', async () => {
+            if (window.location.hash == '')  {
+                return;
+            }
+
+            estado = siglaEstados[window.location.hash.slice(1).toUpperCase()];
+            
+            let requisicaoCidades = await fetch('/api/cidade/' + estado);
+
+            let respostaCidades = (await requisicaoCidades.json()).resultado;
+
+            let stringCidades = '<option value="" disabled selected>Selecione um estado e uma cidade</option>';
+
+            for (cidade of respostaCidades) {
+                stringCidades += `<option value="${cidade.cep}|${cidade.cidade}">${cidade.cidade}</option>`;
+            };
+
+            document.querySelector('select').innerHTML = stringCidades;
+        });
+
+        window.onhashchange = async () => {
+            estado = siglaEstados[window.location.hash.slice(1).toUpperCase()];
+            
+            let requisicaoCidades = await fetch('/api/cidade/' + estado);
+
+            let respostaCidades = (await requisicaoCidades.json()).resultado;
+
+            let stringCidades = '<option value="" disabled selected>Selecione um estado e uma cidade</option>';
+
+            for (cidade of respostaCidades) {
+                stringCidades += `<option value="${cidade.cep}|${cidade.cidade}">${cidade.cidade}</option>`;
+            };
+
+            document.querySelector('select').innerHTML = stringCidades;
+        }
+    </script>
+    <script>
+        let data;
+        let cidade;
+        let tempo;
+
+        window.addEventListener('load', () => {
+            let hoje = new Date();
+            let ano = hoje.getFullYear();
+            let mes = String(hoje.getMonth() + 1).padStart(2, '0');
+            let dia = String(hoje.getDate()).padStart(2, '0');
+
+            data = `${ano}-${mes}-${dia}`;
+
+            document.querySelector('#datas p').textContent = `${dia}/${mes}`
+        });
+
+        document.querySelector('#calendario span').onclick = () => {
+            document.querySelector('#calendario input').showPicker();
+        };
+
+        document.querySelector('select').onchange = () => {
+            cidade = document.querySelector('select').value.split('|');
+            cidade = {
+                'cep': cidade[0],
+                'cidade': cidade[1]
+            };
+
+            document.querySelector('#informações-cidade h2').textContent = cidade.cidade;
+
+            alterarInterfaceTempo(cidade, data);
+        };
+
+        document.querySelector('#calendario input').onchange = async () => {
+            if (cidade == undefined) {
+                return;
+            }
+
+
+            let [aaaa, mm, dd] = document.querySelector('#calendario input').value.split('-').map(Number);
+
+            mm = String(mm).padStart(2, '0'); 
+            dd = String(dd).padStart(2, '0');
+
+            document.querySelector('#datas p').textContent = `${dd}/${mm}`
+
+            data = document.querySelector('#calendario input').value;
+
+            alterarInterfaceTempo(cidade, data);
+            
+        };
+
+        async function alterarInterfaceTempo(cidade, data) {
+            let requisicaoTempo = await fetch('/api/tempo/' + cidade.cep + '/' + data);
+
+            if (requisicaoTempo.status == 404) {
+                document.querySelector('#condição-climatica').value = '';
+                document.querySelector('#minima input').value = '';
+                document.querySelector('#maxima input').value = '';
+                document.querySelector('#input-chuva').value = '';
+                document.querySelector('#input-vento').value = '';
+                document.querySelector('#input-umidade').value = '';
+                document.querySelector('#input-arco-iris').value = '';
+                document.querySelector('#input-periodo-sol').value = '';
+                document.querySelector('#input-lua').value = '';
+                return;
+            }
+
+            tempo = (await requisicaoTempo.json()).resultado;
+
+            document.querySelector('#condição-climatica').value = tempo.condicao;
+            document.querySelector('#minima input').value = tempo.minima;
+            document.querySelector('#maxima input').value = tempo.maxima;
+            document.querySelector('#input-chuva').value = tempo.chuva;
+            document.querySelector('#input-vento').value = tempo.vento;
+            document.querySelector('#input-umidade').value = tempo.umidade;
+            document.querySelector('#input-arco-iris').value = tempo.arco_iris;
+
+            let [inicioSolHoras, inicioSolMinutos, inicioSolSegundos] = tempo.inicio_sol.split(':').map(Number);
+
+            let [fimSolHoras, fimSolMinutos, fimSolSegundos] = tempo.fim_sol.split(':').map(Number);
+            
+            document.querySelector('#input-periodo-sol').value = inicioSolHoras.toString() + 'h - ' + fimSolHoras.toString() + 'h';
+            
+            document.querySelector('#input-lua').value = tempo.lua;
+        }
+
+        document.querySelector('#botao-cadastrar-tempo').addEventListener('click', async () => {
+            let opcao = 'alterar';
+
+            let requisicaoTeste = await fetch('/api/tempo/' + cidade.cep + '/' + data);
+
+            if (requisicaoTeste.status == 404) {
+                opcao = 'cadastrar';
+            }
+
+            let periodoSol = document.querySelector('#input-periodo-sol').value.replace(/[\sHh]/g, '').split('-');
+            periodoSol[0] = `${periodoSol[0]}:00:00`
+            periodoSol[1] = `${periodoSol[1]}:00:00`
+
+            let bodyRequisicao = {
+                'cep': cidade.cep,
+                'data': data,
+                'condicao': document.querySelector('#condição-climatica').value,
+                'minima': document.querySelector('#minima input').value,
+                'maxima': document.querySelector('#maxima input').value,
+                'chuva': document.querySelector('#input-chuva').value,
+                'vento': document.querySelector('#input-vento').value,
+                'umidade': document.querySelector('#input-umidade').value,
+                'arco_iris': document.querySelector('#input-arco-iris').value,
+                'inicio_sol': periodoSol[0],
+                'fim_sol': periodoSol[1],
+                'lua': document.querySelector('#input-lua').value,
+            };
+
+            console.log(bodyRequisicao);
+
+            let requisicaoEnvio = await fetch(opcao == 'cadastrar' ? '/api/tempo' : '/api/tempo/' + cidade.cep + '/' + data, {
+                method: opcao == 'cadastrar' ? 'POST' : 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    bodyRequisicao
+                )
+            });
+
+            resposta = await requisicaoEnvio.json();
+
+            alert(resposta.mensagem);
+        });
+
+        document.querySelector('#lixeira span').addEventListener('click', async () => {
+            let requisicaoDeletar = await fetch('/api/tempo/' + cidade.cep + '/' + data, {
+                method: 'DELETE'
+            });
+
+            let resposta = await requisicaoDeletar.json();
+
+            alert(resposta.mensagem);
+
+            alterarInterfaceTempo(cidade, data);
+        });
+    </script>
 </body>
 </html>

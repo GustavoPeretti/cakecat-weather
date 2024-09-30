@@ -11,14 +11,44 @@
     <div id="container">
         <div id="inputs">
             <h1>Área restrita</h1>
-            <input type="text" placeholder="Usuário">
-            <input type="password" placeholder="Senha">
+            <input id="campo-login-usuario" type="text" placeholder="Usuário">
+            <input id="campo-login-senha" type="password" placeholder="Senha">
             <div class="button-container">
-                <button> <a href="..\templates\admin.html">Entrar</a></button>
+                <button id="login-button"><a>Entrar</a></button>
                 <img src="..\static\assets\img\login\areia.png" alt="" id="monte-de-areia">
             </div>
         </div>
     </div>
-    
+    <script>
+        document.querySelector('#login-button').addEventListener('click', async () => {
+            let usuario = document.querySelector('#campo-login-usuario').value;
+            let senha = document.querySelector('#campo-login-senha').value;
+
+            let login = await fetch('/admin/login', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        usuario: usuario,
+                        senha: senha
+                    }
+                )
+            });
+
+            if (login.status != 200) {
+                let response = await login.json();
+                alert(response.mensagem);
+                return;
+            }
+
+            if (login.redirected) {
+                window.location = login.url
+            }
+
+        })
+    </script>
 </body>
 </html>

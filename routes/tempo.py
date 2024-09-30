@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from ..database.db import db
 
 tempo = Blueprint('tempo', __name__)
@@ -67,7 +67,7 @@ def cadastrar_tempo():
             'INSERT INTO tempos VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);',
             dados['cep'],
             dados['data'],
-            'admin1',
+            session['usuario'],
             dados['condicao'],
             dados['maxima'],
             dados['minima'],
@@ -80,7 +80,7 @@ def cadastrar_tempo():
             dados['lua']
         )
     except:
-        return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados3.'}), 400
+        return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
     
     return jsonify({'status': True, 'mensagem': 'Recurso criado.'}), 201
 

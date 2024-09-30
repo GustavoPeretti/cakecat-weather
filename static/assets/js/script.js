@@ -5,7 +5,9 @@
 			var estado = $(this).attr('data-state');
 		    var box_estado = '#box_'+estado;
 
-		    console.log('.state_'+estado+' .shape');
+		    // console.log('.state_'+estado+' .shape');
+			
+			window.location.hash = estado
 
 		    // Reseta o estado e seu label para a cor padrão
 		    $('.state .label_icon_state').css({'fill': '#666'});
@@ -18,7 +20,7 @@
 
 		    //Verifica se o cadastro de contato do estado existe
 		    if($('#box_'+estado).length == 0){
-		    	console.log('Não existe');
+				
 		    }else{
 		    	$('.parca .estado').addClass('some');
 			    $('.parca .estado').css({'opacity': 0 , 'visibitity':'hidden'});
