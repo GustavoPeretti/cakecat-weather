@@ -378,7 +378,7 @@
                     <input type="color" id="colorPicker" name="cor-conceito" value="#97e6ff">
     
                     <div id="botao-cadastro">
-                        <button type="submit" class="cadastrar">Adicionar conceito</button>
+                        <button id="botao-cadastrar-conceito" type="submit" class="cadastrar">Adicionar/Editar conceito</button>
                     </div>
                 </form>
     
@@ -650,6 +650,112 @@
 
             alterarInterfaceTempo(cidade, data);
         });
+    </script>
+    <script>
+        let conceitoAtual;
+
+        document.querySelector('span.close').onclick = () => {
+            document.getElementById('modalConceito').style.display = "none";
+        }
+
+        window.addEventListener('load', () => {
+            gerarListaConceitos();
+        });
+
+        async function gerarListaConceitos() {
+            conceitosCadastrados.innerHTML = '';
+
+            let requisicaoConceitos = await fetch('/api/conceito');
+
+            let conceitos = (await requisicaoConceitos.json()).resultado;
+
+            for (let conceito of conceitos) {
+                let novoConceito = document.createElement('li');
+                novoConceito.className = 'itens-lista-administracao';
+
+                novoConceito.innerHTML = `
+                    ${conceito.titulo}
+                    <div>
+                        <button id="botao-deletar-conceito-${conceito.titulo}" class="icones-administracao botao-deletar-conceito"><span class="material-symbols-outlined">person_remove</span></button>
+                        <button id="botao-editar-conceito-${conceito-titulo}" class="icones-administracao botao-editar-conceito"><span class="material-symbols-outlined">edit</span></button>
+                        <button class="icones-administracao verDetalhes"><span class="material-symbols-outlined">visibility</span></button>
+                    </div>
+                `;
+
+                novoConceito.querySelector(`.botao-editar-conceito`).addEventListener('click', function() {
+                    conceitoAtual = conceito.titulo;
+
+                    document.querySelector('#titulo').value = conceito.titulo;
+                    document.querySelector('#conceito').value = conceito.descricao;
+                    document.querySelector('#colorPicker').value = '#' + conceito.cor;
+                });
+
+                novoConceito.querySelector(`.botao-deletar-conceito`).addEventListener('click', async function() {
+                    conceitoAtual = conceito.titulo;
+
+                    let requisicaoDeletar = await fetch('/api/conceito/' + conceito.titulo, {
+                        method: 'DELETE'
+                    });
+        
+                    let resposta = await requisicaoDeletar.json();
+        
+                    alert(resposta.mensagem);
+
+                    gerarListaConceitos();
+                });
+
+                novoConceito.querySelector('.verDetalhes').addEventListener('click', function() {
+                    document.getElementById('modalConceito').style.display = "block";  
+                    document.getElementById('modalTitulo').textContent = conceito.titulo; 
+                    document.getElementById('modalDescricao').textContent = conceito.descricao;  
+                    document.getElementById('modalCor').textContent = '#' + conceito.cor;  
+                    document.getElementById('modalCor').style.backgroundColor = '#' + conceito.cor;  
+                });
+
+                conceitosCadastrados.appendChild(novoConceito);
+            }
+        }
+
+        document.querySelector('#botao-cadastrar-conceito').addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            let opcao = 'alterar';
+
+            let requisicaoTeste = await fetch('/api/conceito/' + document.querySelector('#titulo').value);
+
+            if (requisicaoTeste.status == 404) {
+                opcao = 'cadastrar';
+            }
+
+            let bodyRequisicao = {
+                'titulo': document.querySelector('#titulo').value,
+                'descricao': document.querySelector('#conceito').value,
+                'cor': document.querySelector('#colorPicker').value.slice(1)
+            };
+
+            console.log(bodyRequisicao);
+
+            let requisicaoEnvio = await fetch(opcao == 'cadastrar' ? '/api/conceito' : '/api/conceito/' + document.querySelector('#titulo').value, {
+                method: opcao == 'cadastrar' ? 'POST' : 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    bodyRequisicao
+                )
+            });
+
+            resposta = await requisicaoEnvio.json();
+
+            alert(resposta.mensagem);
+
+            document.getElementById('conceitoForm').reset();
+            gerarListaConceitos();
+        });
+    </script>
+    <script>
+        
     </script>
 </body>
 </html>

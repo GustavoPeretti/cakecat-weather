@@ -3,6 +3,20 @@ from ..database.db import db
 
 conceito = Blueprint('conceito', __name__)
 
+@conceito.route('/<titulo>', methods=['GET'])
+def buscar_conceito(titulo):
+    try:
+        resultado = db.query('SELECT * FROM conceitos WHERE titulo = %s;', titulo)
+
+        if len(resultado) == 0:
+            return jsonify({'status': False, 'mensagem': 'Recurso não foi encontrado.'}), 404
+        
+        resultado = resultado[0]
+    except:
+        return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
+
+    return jsonify({'status': True, 'resultado': resultado}), 200
+
 @conceito.route('/', methods=['GET'])
 def buscar_conceitos():
     try:
