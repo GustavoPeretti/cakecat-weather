@@ -32,6 +32,13 @@ CREATE TABLE tempos (
     FOREIGN KEY (administrador) REFERENCES administradores (usuario) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE conceitos (
+	titulo VARCHAR(30),
+    descricao VARCHAR(120) NOT NULL,
+    cor CHAR(6) NOT NULL,
+    PRIMARY KEY (titulo)
+);
+
 INSERT INTO cidades (cep, cidade, estado) VALUES
 ('69945000', 'Acrelândia', 'Acre'),
 ('69935000', 'Assis Brasil', 'Acre'),

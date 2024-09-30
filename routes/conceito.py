@@ -1,12 +1,12 @@
 from flask import Blueprint, request, jsonify
 from ..database.db import db
 
-administrador = Blueprint('administrador', __name__)
+conceito = Blueprint('conceito', __name__)
 
-@administrador.route('/', methods=['GET'])
-def buscar_administradores():
+@conceito.route('/', methods=['GET'])
+def buscar_conceitos():
     try:
-        resultado = db.query('SELECT usuario FROM administradores;')
+        resultado = db.query('SELECT titulo, descricao, cor FROM conceitos;')
 
         if len(resultado) == 0:
             return jsonify({'status': False, 'mensagem': 'Nenhum recurso não foi encontrado.'}), 404
@@ -15,13 +15,14 @@ def buscar_administradores():
 
     return jsonify({'status': True, 'resultado': resultado}), 200
 
-@administrador.route('/', methods=['POST'])
-def cadastrar_administrador():
+@conceito.route('/', methods=['POST'])
+def cadastrar_conceito():
     dados = request.json
 
     parametros = [
-        'usuario',
-        'senha'
+        'titulo',
+        'descricao',
+        'cor'
     ]
 
     for parametro in parametros:
@@ -29,30 +30,32 @@ def cadastrar_administrador():
             return jsonify({'status': False, 'mensagem': f'Parâmetro {parametro} sem argumento.'}), 400
     
     try:
-        administradores_cadastrados = db.query('SELECT usuario FROM administradores WHERE usuario = %s;', dados['usuario'])
+        conceitos_cadastrados = db.query('SELECT titulo FROM conceitos WHERE titulo = %s;', dados['titulo'])
     except:
         return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
 
-    if administradores_cadastrados:
+    if conceitos_cadastrados:
         return jsonify({'status': False, 'mensagem': 'Conflito com recurso já existente.'}), 409
 
     try:
         db.query(
-            'INSERT INTO administradores VALUES (%s, SHA2(%s, 256));',
-            dados['usuario'],
-            dados['senha']
+            'INSERT INTO conceitos VALUES (%s, %s, %s, %s);',
+            dados['titulo'],
+            'admin1',
+            dados['descricao'],
+            dados['cor']
         )
     except:
         return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados3.'}), 400
     
     return jsonify({'status': True, 'mensagem': 'Recurso criado.'}), 201
 
-@administrador.route('/<usuario>', methods=['PUT'])
-def atualizar_administrador(usuario):
+@conceito.route('/<titulo>', methods=['PUT'])
+def atualizar_conceito(titulo):
     dados = request.json
 
     try:
-        resultado = db.query('SELECT usuario FROM administradores WHERE usuario = %s;', usuario)
+        resultado = db.query('SELECT titulo FROM conceitos WHERE titulo = %s;', titulo)
 
         if len(resultado) == 0:
             return jsonify({'status': False, 'mensagem': 'Recurso não foi encontrado.'}), 404
@@ -60,8 +63,9 @@ def atualizar_administrador(usuario):
         return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
     
     parametros = [
-        'usuario',
-        'senha'
+        'titulo',
+        'descricao',
+        'cor'
     ]
 
     parametros = [parametro for parametro in parametros if parametro in dados]
@@ -71,16 +75,16 @@ def atualizar_administrador(usuario):
     
     try:
         for parametro in parametros:
-            db.query(f'UPDATE administradores SET {parametro} = %s WHERE usuario = %s;', dados[parametro], usuario)
+            db.query(f'UPDATE conceitos SET {parametro} = %s WHERE titulo = %s;', dados[parametro], titulo)
     except:
         return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
     
     return jsonify({'status': True, 'mensagem': 'Recurso atualizado.'}), 200
 
-@administrador.route('/<usuario>', methods=['DELETE'])
-def deletar_tempo(usuario):
+@conceito.route('/<titulo>', methods=['DELETE'])
+def deletar_conceito(titulo):
     try:
-        resultado = db.query('SELECT * FROM administradores WHERE usuario = %s;', usuario)
+        resultado = db.query('SELECT * FROM conceitos WHERE titulo = %s;', titulo)
 
         if len(resultado) == 0:
             return jsonify({'status': False, 'mensagem': 'Recurso não foi encontrado.'}), 404
@@ -88,7 +92,7 @@ def deletar_tempo(usuario):
         return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
     
     try:
-        db.query('DELETE FROM administradores WHERE usuario = %s;', usuario)
+        db.query('DELETE FROM conceitos WHERE titulo = %s;', titulo)
     except:
         return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
 

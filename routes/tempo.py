@@ -60,7 +60,7 @@ def cadastrar_tempo():
         return jsonify({'status': False, 'mensagem': 'Não foi possível processar os dados.'}), 400
     
     if not cidade:
-        return jsonify({'status': False, 'mensagem': f'O CEP "{dados['cep']} não está vinculado a nenhuma cidade.".'}), 400
+        return jsonify({'status': False, 'mensagem': f'O CEP "{dados['cep']}" não está vinculado a nenhuma cidade.".'}), 400
 
     try:
         db.query(
